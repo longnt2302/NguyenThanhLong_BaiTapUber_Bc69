@@ -138,20 +138,20 @@ document.querySelector(".contact100-form-btn").onclick = function () {
     </tr>`;
     if (distance > 1 && distance <= 19) {
       tbl += `<tr>
-      <th scope="row">Từ 1km đến ${data.distance.middle}km</th>
+      <th scope="row">Từ 1km đến ${distance}km</th>
       <td>${data.distance.middle}km</td>
       <td>${switchCurrency(datasPrice[transportation]["middle"])}</td>
       <td>${switchCurrency(data.price.middle)}</td>
     </tr>`;
     } else if (distance > 19) {
       tbl += `<tr>
-      <th scope="row">Từ 1km đến 18km</th>
+      <th scope="row">Từ 1km đến 19km</th>
       <td>${data.distance.middle}km</td>
       <td>${switchCurrency(datasPrice[transportation]["middle"])}</td>
       <td>${switchCurrency(data.price.middle)}</td>
     </tr>
       <tr>
-      <th scope="row">Từ 19km đến ${distance}km</th>
+      <th scope="row">Từ > 19km đến ${distance}km</th>
       <td>${data.distance.end}km</td>
       <td>${switchCurrency(datasPrice[transportation]["end"])}</td>
       <td>${switchCurrency(data.price.end)}</td>
