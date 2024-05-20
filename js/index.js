@@ -151,7 +151,7 @@ document.querySelector(".contact100-form-btn").onclick = function () {
       <td>${switchCurrency(data.price.middle)}</td>
     </tr>
       <tr>
-      <th scope="row">Từ 19km đến ${data.distance.end}km</th>
+      <th scope="row">Từ 19km đến ${distance}km</th>
       <td>${data.distance.end}km</td>
       <td>${switchCurrency(datasPrice[transportation]["end"])}</td>
       <td>${switchCurrency(data.price.end)}</td>
