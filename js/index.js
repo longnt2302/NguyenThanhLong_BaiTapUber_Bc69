@@ -100,7 +100,7 @@ let handlePayment = (transportation, distance, time = 0) => {
   return data;
 };
 
-document.querySelector(".contact100-form-btn").onclick = function () {
+let validateInput = () => {
   let checkedErr = 0;
   if (!document.querySelector("input[type='radio']:checked")) {
     alert('VUI LÒNG CHỌN LOẠI XE DI CHUYỂN');
@@ -112,7 +112,36 @@ document.querySelector(".contact100-form-btn").onclick = function () {
     alert('VUI LÒNG NHẬP SỐ KM > 0');
     checkedErr++;
   }
-  if( checkedErr == 0 ) {
+  return checkedErr;
+};
+
+let getData = () => {
+  let loaiXe = document.querySelector("input[name=selector]:checked").value;
+    let distance = document.getElementById("txt-km").value * 1;
+    let time = document.getElementById("txt-thoiGianCho").value * 1;
+    let transportation;
+    switch (loaiXe) {
+      case UBER_CAR:
+        transportation = "UBER_CAR";
+        break;
+      case UBER_SUV:
+        transportation = "UBER_SUV";
+        break;
+      case UBER_BLACK:
+        transportation = "UBER_BLACK";
+        break;
+    }
+    let data = handlePayment(transportation, distance, time);
+    return data;
+};
+
+let btnRes = document.querySelectorAll('.contact100-form-btn');
+let tinhTien = btnRes[0];
+let inHoaDon = btnRes[1];
+
+tinhTien.onclick = function() {
+  let err = validateInput();
+  if( err == 0 ) {
     let loaiXe = document.querySelector("input[name=selector]:checked").value;
     let distance = document.getElementById("txt-km").value * 1;
     let time = document.getElementById("txt-thoiGianCho").value * 1;
@@ -129,6 +158,32 @@ document.querySelector(".contact100-form-btn").onclick = function () {
         break;
     }
     let data = handlePayment(transportation, distance, time);
+    let divThanhTien = document.getElementById('divThanhTien');
+    document.getElementById('xuatTien').innerHTML = `${switchCurrency(data.total)}`;
+    divThanhTien.style.display = "block";
+  }
+};
+
+inHoaDon.onclick = function () {
+  let err = validateInput();
+  if( err == 0 ) {
+    let loaiXe = document.querySelector("input[name=selector]:checked").value;
+    let distance = document.getElementById("txt-km").value * 1;
+    let time = document.getElementById("txt-thoiGianCho").value * 1;
+    let transportation;
+    switch (loaiXe) {
+      case UBER_CAR:
+        transportation = "UBER_CAR";
+        break;
+      case UBER_SUV:
+        transportation = "UBER_SUV";
+        break;
+      case UBER_BLACK:
+        transportation = "UBER_BLACK";
+        break;
+    }
+    let data = handlePayment(transportation, distance, time);
+
     let tbl = "";
     tbl += `<tr>
       <th scope="row">KM ĐẦU TIÊN</th>
