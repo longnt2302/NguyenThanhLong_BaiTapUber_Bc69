@@ -103,10 +103,13 @@ let handlePayment = (transportation, distance, time = 0) => {
 document.querySelector(".contact100-form-btn").onclick = function () {
   let checkedErr = 0;
   if (!document.querySelector("input[type='radio']:checked")) {
-    alert('Vui lòng chọn loại xe');
+    alert('VUI LÒNG CHỌN LOẠI XE DI CHUYỂN');
     checkedErr++;
   } else if( document.getElementById("txt-km").value == '' ) {
-    alert('Vui lòng nhập số quãng đường đi');
+    alert('VUI LÒNG NHẬP SỐ KM');
+    checkedErr++;
+  } else if ( +document.getElementById("txt-km").value == 0 ) {
+    alert('VUI LÒNG NHẬP SỐ KM > 0');
     checkedErr++;
   }
   if( checkedErr == 0 ) {
